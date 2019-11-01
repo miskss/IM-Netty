@@ -1,0 +1,6 @@
+spring:
+  redis:
+    lettuce:
+      pool:
+        max-wait: 200ms
+    database: 4
