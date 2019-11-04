@@ -3,6 +3,7 @@ package com.example.imnetty.repository;
 import com.example.imnetty.model.UserEntity;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author peter
@@ -16,7 +17,10 @@ public interface UserRepository {
 
     UserEntity findByUserId(String uid);
 
-    List<UserEntity> findByUsernameLike(String usernameLike);
+    List<UserEntity> findByUsernameOrIdLike(String usernameOrIdLike);
 
+    void saveUserFriend(String uid, String fUid);
+
+    Set<UserEntity> findUserFriends(String uid);
 
 }

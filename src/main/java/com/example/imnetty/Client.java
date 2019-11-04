@@ -3,8 +3,7 @@ package com.example.imnetty;
 import com.example.imnetty.action.ConsoleAction;
 import com.example.imnetty.commonhandler.ProtocolPacketHandler;
 import com.example.imnetty.commonhandler.SpliterHandler;
-import com.example.imnetty.protocol.client.ResponseLoginProtocolPacketHandler;
-import com.example.imnetty.protocol.client.ResponseRegisterProtocolPacketHandler;
+import com.example.imnetty.protocol.client.*;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -17,6 +16,10 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  **/
 public class Client {
     public static void main(String[] args) {
+        startClient();
+    }
+
+    public static void startClient() {
         NioEventLoopGroup executors = new NioEventLoopGroup();
 
         Bootstrap handler = new Bootstrap()
@@ -29,7 +32,10 @@ public class Client {
                                 .addLast(new SpliterHandler())
                                 .addLast(new ProtocolPacketHandler())
                                 .addLast(new ResponseRegisterProtocolPacketHandler())
-                                .addLast(new ResponseLoginProtocolPacketHandler());
+                                .addLast(new ResponseLoginProtocolPacketHandler())
+                                .addLast(new ResponseSearchUserProtocolPacketHandler())
+                                .addLast(new ResponseFriendsProtocolPacketHandler())
+                            .addLast(new SendMessageProtocolPacketHandler());
                     }
                 });
 

@@ -14,6 +14,7 @@ public class ResponseLoginProtocolPacketHandler extends SimpleChannelInboundHand
     protected void channelRead0(ChannelHandlerContext ctx, ResponseLoginProtocolPacket msg) throws Exception {
         if (msg.reqSuccess()) {
             System.out.println("登录 成功！！");
+            ConsoleAction.interfaceAction(ctx.channel());
         } else {
             System.out.println("登录失败!!错误信息:" + msg.getErrMsg());
             Thread.sleep(800);

@@ -1,10 +1,8 @@
 package com.example.imnetty.protocol.command;
 
 import com.example.imnetty.protocol.ProtocolPacket;
-import com.example.imnetty.protocol.client.LoginProtocolPacket;
-import com.example.imnetty.protocol.client.RegisterProtocolPacket;
-import com.example.imnetty.protocol.server.ResponseLoginProtocolPacket;
-import com.example.imnetty.protocol.server.ResponseRegisterProtocolPacket;
+import com.example.imnetty.protocol.client.*;
+import com.example.imnetty.protocol.server.*;
 
 /**
  * @author peter
@@ -15,9 +13,18 @@ public enum CommandEnum {
     RESPONSE_REGISTER(2, ResponseRegisterProtocolPacket.class),
 
     LOGIN(3, LoginProtocolPacket.class),
-    RESPONSE_LOGIN(4, ResponseLoginProtocolPacket.class)
+    RESPONSE_LOGIN(4, ResponseLoginProtocolPacket.class),
 
+    SEARCH_USER(5, SearchUserProtocolPacket.class),
+    RESPONSE_SEARCH_USER(6, ResponseSearchUserProtocolPacket.class),
 
+    ADD_USER(7, AddUserProtocolPacket.class),
+
+    FRIENDS(8, FriendsProtocolPacket.class),
+    RESPONSE_FRIEND(9, ResponseFriendsProtocolPacket.class),
+
+    MESSAGE(10, MessageProtocolPacket.class),
+    SEND_MESSAGE(11, SendMessageProtocolPacket.class)
     ;
 
     private int command;

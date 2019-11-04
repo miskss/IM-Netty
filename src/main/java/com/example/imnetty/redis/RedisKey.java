@@ -16,4 +16,7 @@ public interface RedisKey {
 
     String USER = "user:";
 
+    String USER_FRIEND = "friend:";
+
+
 }

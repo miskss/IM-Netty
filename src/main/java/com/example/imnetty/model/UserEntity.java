@@ -19,4 +19,12 @@ public class UserEntity implements Serializable {
 
     private String password;
 
+
+    public UserVO convertTo(){
+        UserVO userVO = new UserVO();
+        userVO.setUid(this.uid);
+        userVO.setUsername(this.username);
+        return userVO;
+    }
+
 }

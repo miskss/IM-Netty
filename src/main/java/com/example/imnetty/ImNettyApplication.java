@@ -2,8 +2,7 @@ package com.example.imnetty;
 
 import com.example.imnetty.commonhandler.ProtocolPacketHandler;
 import com.example.imnetty.commonhandler.SpliterHandler;
-import com.example.imnetty.protocol.server.LoginProtocolPacketHandler;
-import com.example.imnetty.protocol.server.RegisterProtocolPacketHandler;
+import com.example.imnetty.protocol.server.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -33,10 +32,16 @@ public class ImNettyApplication {
                     @Override
                     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
                         nioSocketChannel.pipeline()
+                                .addLast(new IdleStateHandler())
                                 .addLast(new SpliterHandler())
                                 .addLast(new ProtocolPacketHandler())
                                 .addLast(new RegisterProtocolPacketHandler())
-                        .addLast(new LoginProtocolPacketHandler())
+                                .addLast(new LoginProtocolPacketHandler())
+                                .addLast(new AuthHandler())
+                                .addLast(new SearchUserProtocolPacketHandler())
+                                .addLast(new AddUserProtocolPacketHandler())
+                                .addLast(new FriendsProtocolPacketHandler())
+                                .addLast(new MessageProtocolPacketHandler())
 
                         ;
                     }
