@@ -1,5 +1,10 @@
 package com.example.imnetty.redis;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -19,7 +24,16 @@ public class RedisConfig {
     @Bean
     public  RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
 
-        Gson2JsonRedisSerializer<Object> serializer = new Gson2JsonRedisSerializer<>();
+        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+
+        BasicPolymorphicTypeValidator build = BasicPolymorphicTypeValidator.builder().allowIfBaseType(Object.class).build();
+
+        objectMapper.activateDefaultTyping(build,ObjectMapper.DefaultTyping.NON_FINAL);
+        serializer.setObjectMapper(objectMapper);
+
+
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());

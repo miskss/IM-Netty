@@ -20,6 +20,13 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
             ctx.channel().close();
             return;
         }
+        ctx.pipeline().remove(this);
         super.channelRead(ctx, msg);
+    }
+
+
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("移除权限过滤handler");
     }
 }

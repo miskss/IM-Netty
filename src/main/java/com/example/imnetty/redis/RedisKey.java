@@ -18,5 +18,8 @@ public interface RedisKey {
 
     String USER_FRIEND = "friend:";
 
+    String GROUP_CHAT = "group:chat:";
+
+    String USER_GROUP_CHAT = "user-chat:";
 
 }

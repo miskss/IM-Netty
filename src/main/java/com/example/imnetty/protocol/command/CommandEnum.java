@@ -24,7 +24,19 @@ public enum CommandEnum {
     RESPONSE_FRIEND(9, ResponseFriendsProtocolPacket.class),
 
     MESSAGE(10, MessageProtocolPacket.class),
-    SEND_MESSAGE(11, SendMessageProtocolPacket.class)
+    SEND_MESSAGE(11, SendMessageProtocolPacket.class),
+
+    GROUP(12, CreateGroupProtocolPacket.class),
+    SEARCH_GROUP(13, SearchGroupChatProtocolPacket.class),
+    RESPONSE_SEARCH_GROUP(14, ResponseSearchGroupChatProtocolPacket.class),
+    JOIN_GROUP(15, AddGroupChatProtocolPacket.class),
+    OWNER_CHAT(16, OwnerChatProtocolPacket.class),
+    RESPONSE_OWNER_CHAT(17, ResponseOwnerChatProtocolPacket.class),
+
+    GROUP_MESSAGE(18,GroupMessageProtocolPacket.class),
+    GROUP_MESSAGE_TO_SEND(19,GroupMessageToSendProtocolPacket.class),
+
+    HEART_BEAT(20,HeartBeatProtocolPacket.class)
     ;
 
     private int command;

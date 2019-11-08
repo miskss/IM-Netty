@@ -38,10 +38,16 @@ public class ImNettyApplication {
                                 .addLast(new RegisterProtocolPacketHandler())
                                 .addLast(new LoginProtocolPacketHandler())
                                 .addLast(new AuthHandler())
+                                .addLast(new HeartBeatProtocolPacketHandler())
                                 .addLast(new SearchUserProtocolPacketHandler())
                                 .addLast(new AddUserProtocolPacketHandler())
                                 .addLast(new FriendsProtocolPacketHandler())
                                 .addLast(new MessageProtocolPacketHandler())
+                                .addLast(new CreateGroupProtocolPacketHandler())
+                                .addLast(new SearchGroupChatProtocolPacketHandler())
+                                .addLast(new AddGroupChatProtocolPacketHandler())
+                                .addLast(new GroupMessageProtocolPacketHandler())
+                                .addLast(new OwnerChatProtocolPacketHandler())
 
                         ;
                     }

@@ -29,13 +29,18 @@ public class Client {
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
                         ch.pipeline()
+                                .addLast(new ClientIdleStateHandler())
                                 .addLast(new SpliterHandler())
                                 .addLast(new ProtocolPacketHandler())
                                 .addLast(new ResponseRegisterProtocolPacketHandler())
                                 .addLast(new ResponseLoginProtocolPacketHandler())
+                                .addLast(new HeartBeatFixedSendHandler())
                                 .addLast(new ResponseSearchUserProtocolPacketHandler())
                                 .addLast(new ResponseFriendsProtocolPacketHandler())
-                            .addLast(new SendMessageProtocolPacketHandler());
+                                .addLast(new SendMessageProtocolPacketHandler())
+                                .addLast(new ResponseSearchGroupChatProtocolPacketHandler())
+                                .addLast(new ResponseOwnerChatProtocolPacketHandler())
+                                .addLast(new GroupMessageToSendProtocolPacketHandler());
                     }
                 });
 

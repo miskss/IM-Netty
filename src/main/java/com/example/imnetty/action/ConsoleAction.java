@@ -12,32 +12,24 @@ import java.util.Scanner;
 public class ConsoleAction {
 
     public static void initAction(Channel channel) {
-
         System.out.println("===============  欢迎使用 XXX IM 聊天系统  =================");
         Scanner scanner = new Scanner(System.in);
         initShow(scanner).doCommand(channel);
-
     }
 
     public static void interfaceAction(Channel channel) {
-
         Scanner scanner = new Scanner(System.in);
         showFunc(scanner).doCommand(channel);
-
-
     }
 
 
     private static Action initShow(Scanner scanner) {
-
         System.out.println("==================================================");
         System.out.println("===============   请选择操作    ===================");
         System.out.println("===============   1、注册       ===================");
         System.out.println("===============   2、登录       ===================");
         System.out.println("==================================================");
-
         try {
-
             String str = scanner.nextLine();
             switch (Integer.parseInt(str)) {
                 case 1:
@@ -47,7 +39,6 @@ public class ConsoleAction {
                 default:
                     return initShow(scanner);
             }
-
         } catch (Exception e) {
             return initShow(scanner);
         }
@@ -73,8 +64,11 @@ public class ConsoleAction {
                 case 2:
                     return new SearchUserAction();
                 case 3:
+                    return new CreateGroupChatAction();
                 case 4:
+                    return new SearchGroupChatAction();
                 case 5:
+                    return new OwnerChatAction();
                 case 6:
                     return new IdleAction();
                 case 7:
@@ -82,7 +76,6 @@ public class ConsoleAction {
                 default:
                     return showFunc(scanner);
             }
-
         } catch (Exception e) {
             return showFunc(scanner);
         }
